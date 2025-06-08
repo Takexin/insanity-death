@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="Insanity death"
-run/main_scene="res://player/player.tscn"
+run/main_scene="uid://q0noet6mmfw8"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
 window/vsync/vsync_mode=0
+
+[global_group]
+
+player=""
 
 [input]
 

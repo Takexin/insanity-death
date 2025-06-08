@@ -3,14 +3,41 @@
 [ext_resource type="Script" uid="uid://c1vq7f11jfb4k" path="res://player/player.gd" id="1_dlkyw"]
 [ext_resource type="Texture2D" uid="uid://c1vphducab0w1" path="res://icon.svg" id="2_4gkfa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xolet"]
-size = Vector2(120, 120)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
+radius = 66.0
+height = 132.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_dlkyw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_4gkfa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_xolet")
+shape = SubResource("CapsuleShape2D_rkbax")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
+layout_mode = 1
+offset_left = 30.0
+offset_right = 330.0
+offset_bottom = 27.0
