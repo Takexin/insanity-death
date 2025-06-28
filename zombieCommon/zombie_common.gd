@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
-const SPEED = 10
-const ACCEL = 60
+@export var SPEED = 10
+@export var ACCEL = 60
+@export var DAMAGE = 10
+
 @onready var player = get_parent().get_node_or_null("Player")
 
 func _physics_process(delta: float) -> void:
