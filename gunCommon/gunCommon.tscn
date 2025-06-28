@@ -4,9 +4,8 @@
 
 [node name="GunCommon" type="Node2D"]
 script = ExtResource("1_k8nq4")
-cooldown = 0.1
 fireMode = 1
-bulletSpeed = 0.1
+bulletSpeed = 1.0
+bulletSpreadRange = 0.1
 dmgDropoff = 1.0
 bulletAmmount = 1
-bulletSpreadRange = 0.1

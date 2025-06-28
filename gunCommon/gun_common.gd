@@ -45,6 +45,13 @@ func _get_property_list():
                 "hint_string": "0.1,10.0,0.05"
             })
             ret.append({
+                "name" : &"bulletSpreadRange",
+                "type" : TYPE_FLOAT,
+                "usage" : PROPERTY_USAGE_DEFAULT,
+                "hint" : 1,
+                "hint_string": "0.1,10.0,0.05"
+                })
+            ret.append({
                 "name" : &"dmgDropoff",
                 "type" : TYPE_FLOAT,
                 "usage" : PROPERTY_USAGE_DEFAULT,
@@ -59,12 +66,6 @@ func _get_property_list():
                 "hint" : 1,
                 "hint_string": "1,100, or_greater"
                 })
-                ret.append({
-                "name" : &"bulletSpreadRange",
-                "type" : TYPE_FLOAT,
-                "usage" : PROPERTY_USAGE_DEFAULT,
-                "hint" : 1,
-                "hint_string": "0.1,10.0,0.05"
-                })
+                
         return ret
 @export var bullet:Resource
