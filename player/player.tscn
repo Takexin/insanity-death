@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6oynkyncjr8b"]
+[gd_scene load_steps=5 format=3 uid="uid://b6oynkyncjr8b"]
 
 [ext_resource type="Script" uid="uid://c1vq7f11jfb4k" path="res://player/player.gd" id="1_dlkyw"]
 [ext_resource type="Texture2D" uid="uid://c1vphducab0w1" path="res://icon.svg" id="2_4gkfa"]
+[ext_resource type="PackedScene" uid="uid://dhi31f11tkcie" path="res://gunCommon/gunCommon.tscn" id="3_g1dw6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
 radius = 66.0
@@ -41,3 +42,7 @@ layout_mode = 1
 offset_left = 30.0
 offset_right = 330.0
 offset_bottom = 27.0
+
+[node name="GunCommon" parent="." instance=ExtResource("3_g1dw6")]
+rotation = 2.84413
+scale = Vector2(1.00112, -1)

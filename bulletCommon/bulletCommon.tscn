@@ -1,3 +1,4 @@
 [gd_scene format=3 uid="uid://bggynjajec1mh"]
 
 [node name="BulletCommon" type="Node2D"]
+scale = Vector2(1.00337, 1)

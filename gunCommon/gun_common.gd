@@ -4,7 +4,7 @@ extends Node2D
 @export_group("Gun Properties")
 
 @export_range(0.1,5,0.05) var cooldown = 0.0
-@export_range(0,10,0.1) var turnSlowness = 0.0
+@export_range(0.1,1,0.05) var turnSpeed = 0.1
 @export_range(0,10,0.1) var recoil = 0.0:
     set(b):
         print(get_script().get_script_property_list() )
@@ -69,3 +69,25 @@ func _get_property_list():
                 
         return ret
 @export var bullet:Resource
+
+@onready var player = get_parent()
+func _physics_process(delta: float) -> void:
+    var mouse = get_global_mouse_position()
+    
+    var turnRate = turnSpeed
+    #look_at(get_global_mouse_position())
+    #rotation = get_global_mouse_position().angle_to_point(position)
+    print(get_angle_to(mouse))
+    #print(global_position - mouse)
+    
+    if rotation > PI/2 or rotation < -PI/2:
+        scale.y = -1
+    else:
+        scale.y = 1
+    #look_at(mouse.lerp(global_position - mouse, 0.01))
+    # if ((atan2(mouse.y, mouse.x)) - rotation) < -1.8*PI:
+    rotation = lerpf(rotation, get_angle_to(mouse) + rotation, turnRate * delta * 25)
+    # rotation = (atan2(mouse.y, mouse.x))
+    #     rotate(lerpf( abs(atan2(mouse.y, mouse.x)) - rotation + 2*PI, 0, turnRate))
+    # else:
+    #     rotation = move_toward(rotation, get_global_mouse_position().angle_to_point(player.position), turnSlowness)
