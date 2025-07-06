@@ -4,6 +4,8 @@ extends CharacterBody2D
 const SPEED = 30000.0
 const ACCEL = 60
 
+@onready var gun_common = $GunCommon
+
 @export var HEALTH = 100
 @onready var healthBar = $CanvasLayer/Control/ProgressBar
 
@@ -32,5 +34,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, direction.y * SPEED * delta, ACCEL)
 	else:
 		velocity.y = move_toward(velocity.y, 0, ACCEL)
+	
+	if Input.is_action_pressed("actionMouseDown"):
+		gun_common.shoot()
 
 	move_and_slide()
