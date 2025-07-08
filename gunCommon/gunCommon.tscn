@@ -5,13 +5,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8nq4"]
 
 [node name="GunCommon" type="Node2D"]
-rotation = -27.1783
+rotation = 16.3998
 scale = Vector2(1, -1)
 script = ExtResource("1_k8nq4")
 fireMode = 0
-bulletInitialSpeed = 1.0
-bulletTargetSpeed = 1.0
-bulletAccel = 1.0
+bulletLifeSpan = 1.0
+bulletInitialSpeed = 240.0
+bulletTargetSpeed = 240.0
+bulletAccel = 0.0
 bulletSpreadRange = 0.1
 dmgDropoff = 1.0
 
@@ -21,6 +22,6 @@ scale = Vector2(3.78437, 3.78437)
 shape = SubResource("RectangleShape2D_k8nq4")
 
 [node name="shootAnchor" type="Node2D" parent="."]
-position = Vector2(86.6596, -17.2659)
+position = Vector2(86, -16)
 
 [node name="cooldown" type="Timer" parent="."]

@@ -1,8 +1,11 @@
 extends CharacterBody2D
+class_name zombie_common
 
+@export var HEALTH= 30
 @export var SPEED = 10
 @export var ACCEL = 60
 @export var DAMAGE = 10
+
 
 @onready var player = get_parent().get_node_or_null("Player")
 
@@ -28,6 +31,14 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, ACCEL)
 
 	move_and_slide()
+
+func _beforeDeathZombie():
+	pass
+func takeDamage(damage : float):
+	HEALTH -= damage
+	if HEALTH <= 0:
+		await _beforeDeathZombie()
+		queue_free()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

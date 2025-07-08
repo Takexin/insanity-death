@@ -4,7 +4,7 @@ extends Node2D
 
 @export_group("Gun Properties")
 
-@export_range(0.1,5,0.05) var cooldown = 0.0
+@export_range(0.1,5,0.05) var fireRate = 1.0
 @export_range(0.1,1,0.05) var turnSpeed = 0.1
 @export_range(0,10,0.1) var recoil = 0.0
 @export_group("Bullet")
@@ -14,15 +14,17 @@ extends Node2D
 		bulletType = value
 		notify_property_list_changed() 
 
+var canShoot = true
 var fireModeEnum = {"Single" : 0, "Spread" : 1}
 var fireMode : int = 0:
 	set(value):
 		if value == fireMode : return
 		fireMode = value
 		notify_property_list_changed() 
-var bulletInitialSpeed : float = 1.0
-var bulletTargetSpeed : float = 1.0
-var bulletAccel : float = 1.0
+var bulletLifeSpan : float = 1.0
+var bulletInitialSpeed : float = 240.0
+var bulletTargetSpeed : float = 240.0
+var bulletAccel : float = 0.0
 var dmgDropoff : float = 1.0
 
 var bulletAmmount : int = 1
@@ -39,32 +41,39 @@ func _get_property_list():
 				"hint_string" : ",".join(fireModeEnum.keys())
 			})
 			ret.append({
+				"name" : &"bulletLifeSpan",
+				"type" : TYPE_FLOAT,
+				"usage" : PROPERTY_USAGE_DEFAULT,
+				"hint" : 1,
+				"hint_string": "0.0,10.0,0.05"
+			})
+			ret.append({
 				"name" : &"bulletInitialSpeed",
 				"type" : TYPE_FLOAT,
 				"usage" : PROPERTY_USAGE_DEFAULT,
 				"hint" : 1,
-				"hint_string": "0.1,10.0,0.05"
+				"hint_string": "0,400,5"
 			})
 			ret.append({
 				"name" : &"bulletTargetSpeed",
 				"type" : TYPE_FLOAT,
 				"usage" : PROPERTY_USAGE_DEFAULT,
 				"hint" : 1,
-				"hint_string": "0.1,10.0,0.05"
+				"hint_string": "0,400,5"
 			})
 			ret.append({
 				"name" : &"bulletAccel",
 				"type" : TYPE_FLOAT,
 				"usage" : PROPERTY_USAGE_DEFAULT,
 				"hint" : 1,
-				"hint_string": "0.1,10.0,0.05"
+				"hint_string": "0.0,10.0,0.05"
 			})
 			ret.append({
 				"name" : &"bulletSpreadRange",
 				"type" : TYPE_FLOAT,
 				"usage" : PROPERTY_USAGE_DEFAULT,
 				"hint" : 1,
-				"hint_string": "0.1,10.0,0.05"
+				"hint_string": "0.1,360.0,0.05"
 				})
 			ret.append({
 				"name" : &"dmgDropoff",
@@ -83,45 +92,41 @@ func _get_property_list():
 				})
 				
 		return ret
-@export var bullet:Resource
+@export var bullet:PackedScene
 
 @onready var player = get_parent()
 @onready var shootAnchor = $shootAnchor
 @onready var cooldownTimer = $cooldown
 
+func _ready() -> void:
+	randomize()
+
 func _physics_process(delta: float) -> void:
 	var mouse = get_global_mouse_position()
 	
 	var turnRate = turnSpeed
-	#look_at(get_global_mouse_position())
-	#rotation = get_global_mouse_position().angle_to_point(position)
-	#print(get_angle_to(mouse))
-	#print(global_position - mouse)
-	
 	if rotation > PI/2 or rotation < -PI/2:
 		scale.y = -1
 	else:
 		scale.y = 1
-	#look_at(mouse.lerp(global_position - mouse, 0.01))
-	# if ((atan2(mouse.y, mouse.x)) - rotation) < -1.8*PI:
 	rotation = lerpf(rotation, get_angle_to(mouse) + rotation, turnRate * delta * 25)
-	# rotation = (atan2(mouse.y, mouse.x))
-	#     rotate(lerpf( abs(atan2(mouse.y, mouse.x)) - rotation + 2*PI, 0, turnRate))
-	# else:
-	#     rotation = move_toward(rotation, get_global_mouse_position().angle_to_point(player.position), turnSlowness)
-
+	
 
 func on_hit_enemy(damage : float):
 	pass
 
 func shoot():
-	var bulletInstance : Node2D = bullet.instantiate()
-	bulletInstance.global_position = shootAnchor.global_position
-	bulletInstance.top_level = true
-	bulletInstance.global_rotation = global_rotation
-
-	bulletInstance.initialSpeed = bulletInitialSpeed
-	bulletInstance.targetSpeed = bulletTargetSpeed
-	bulletInstance.accel = bulletAccel
-
-	add_child(bulletInstance)
+	if canShoot:
+		canShoot = false
+		for i in bulletAmmount:
+			var bulletInstance : Node2D = bullet.instantiate()
+			bulletInstance.global_position = shootAnchor.global_position
+			bulletInstance.top_level = true
+			bulletInstance.rotation = randfn(rotation, deg_to_rad(bulletSpreadRange))
+			bulletInstance.initialSpeed = bulletInitialSpeed
+			bulletInstance.targetSpeed = bulletTargetSpeed
+			bulletInstance.accel = bulletAccel
+			bulletInstance.cooldown = bulletLifeSpan
+			add_child(bulletInstance)
+		await get_tree().create_timer(1/fireRate).timeout
+		canShoot = true

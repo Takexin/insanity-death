@@ -19,6 +19,7 @@ texture = ExtResource("2_4gkfa")
 shape = SubResource("CapsuleShape2D_rkbax")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.2, 0.2)
 process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
@@ -31,6 +32,7 @@ drag_bottom_margin = 0.1
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,16 +41,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
-layout_mode = 1
+layout_mode = 0
 offset_left = 30.0
 offset_right = 330.0
 offset_bottom = 27.0
 
 [node name="GunCommon" parent="." instance=ExtResource("3_g1dw6")]
-rotation = 100.443
+rotation = 540.388
 scale = Vector2(1.00112, -1)
-turnSpeed = 0.65
+fireRate = 5.0
+turnSpeed = 0.5
 bullet = ExtResource("4_yw30f")
-bulletInitialSpeed = 0.4
-bulletTargetSpeed = 10.0
-bulletAccel = 1.5
+fireMode = 1
+bulletTargetSpeed = 0.0
+bulletAccel = 2.3
+bulletSpreadRange = 16.05
+bulletAmmount = 10

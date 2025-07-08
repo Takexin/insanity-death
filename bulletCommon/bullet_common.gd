@@ -5,18 +5,26 @@ var direction : Vector2 = Vector2.RIGHT
 var initialSpeed : float = 0.0
 var targetSpeed : float = 0.0
 var accel : float = 0.0
-
-signal hitEnemy
+var speed : float = 0.0
+var cooldown : float = 0.0
+signal enemyHit 
 
 func _ready() -> void:
-    direction = Vector2.RIGHT.rotated(global_rotation)
-    velocity.x = initialSpeed * direction.x
-    velocity.y = initialSpeed * direction.y
+	direction = direction.rotated(global_rotation)
+	speed = initialSpeed 
+	
+	await get_tree().create_timer(cooldown).timeout
+	queue_free()
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
-    if body.is_in_group("enemy"):
-        hitEnemy.emit(damage)
+	if body.is_in_group("enemy"):
+		enemyHit.emit(damage)
+
 func _physics_process(delta: float) -> void:
-    velocity.x = move_toward(velocity.x, direction.x * targetSpeed*100, accel * delta * 100)
-    velocity.y = move_toward(velocity.y, direction.y * targetSpeed*100, accel * delta * 100)
-    move_and_slide()
+	speed = lerp(speed, targetSpeed, accel * delta)
+	velocity = direction * speed * delta * 300
+	
+	#velocity = direction * 10**targetSpeed
+	var collision  = move_and_collide(velocity * delta)
+	if collision:
+		queue_free()
