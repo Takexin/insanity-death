@@ -10,7 +10,7 @@ height = 128.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mncx1"]
 size = Vector2(134, 130)
 
-[node name="ZombieCommon" type="CharacterBody2D"]
+[node name="ZombieCommon" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 2
 motion_mode = 1

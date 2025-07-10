@@ -8,6 +8,7 @@ extends Node2D
 @export_range(0.1,1,0.05) var turnSpeed = 0.1
 @export_range(0,10,0.1) var recoil = 0.0
 @export_group("Bullet")
+@export var damage : int = 1
 @export_enum("Projectile:1", "Lazer:2") var bulletType = 1:
 	set(value):
 		if value == bulletType : return
@@ -127,6 +128,7 @@ func shoot():
 			bulletInstance.targetSpeed = bulletTargetSpeed
 			bulletInstance.accel = bulletAccel
 			bulletInstance.cooldown = bulletLifeSpan
+			bulletInstance.damage = damage
 			add_child(bulletInstance)
 		await get_tree().create_timer(1/fireRate).timeout
 		canShoot = true

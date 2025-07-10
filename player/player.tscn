@@ -47,10 +47,11 @@ offset_right = 330.0
 offset_bottom = 27.0
 
 [node name="GunCommon" parent="." instance=ExtResource("3_g1dw6")]
-rotation = 540.388
+rotation = 544.501
 scale = Vector2(1.00112, -1)
 fireRate = 5.0
 turnSpeed = 0.5
+damage = null
 bullet = ExtResource("4_yw30f")
 fireMode = 1
 bulletTargetSpeed = 0.0
