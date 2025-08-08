@@ -2,7 +2,7 @@ extends Node2D
 
 var MAX_PLAYERS : int = 0 #initialized but value changed by main node
 @onready var MP_player_spawner = $playerSpawner
-@onready var MP_player_scene = preload("res://player/player.tscn")
+
 @onready var MP_player_spawner_node = $players
 func _ready() -> void:
 	if !multiplayer.is_server():
@@ -13,8 +13,10 @@ func _ready() -> void:
 	on_player_connected(1)
 
 func on_player_connected(id : int):
+	var MP_player_scene = preload("res://player/player.tscn")
 	var player_instance = MP_player_scene.instantiate()
 	player_instance.player = id
+	player_instance.name = str(id)
 	MP_player_spawner_node.add_child(player_instance, true)
 		
 func on_player_disconnected(id : int):

@@ -13,6 +13,7 @@ const MAX_PLAYERS = 10
 @onready var WORLD_node = $world
 @onready var WORLD_level = preload("res://level.tscn")
 func _on_server_pressed() -> void:
+	print('server')
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(PORT, MAX_PLAYERS)
 	if error:
@@ -36,14 +37,16 @@ func _on_button_pressed() -> void:
 		ip = DEFAULT_IP
 	if port == "":
 		port = PORT
+		 
 	var error = peer.create_client(ip, port)
 	if error:
 		print("error on creating client")
 		return
+		
 	UI_client_popup.hide()
 	multiplayer.multiplayer_peer = peer
 	start_game()
-
+	
 func start_game():
 	var level_instance = WORLD_level.instantiate()
 	level_instance.MAX_PLAYERS = MAX_PLAYERS

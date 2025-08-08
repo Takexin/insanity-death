@@ -8,7 +8,8 @@ const ACCEL = 60
 @export var player := 1:
 	set(id):
 		player = id
-		$playerInput.set_multiplayer_authority(id)
+		print(id)
+		#$playerInput.set_multiplayer_authority(id)
 
 		
 
@@ -19,6 +20,9 @@ const ACCEL = 60
 
 func _ready() -> void:
 	healthBar.value = HEALTH
+	print("multiplager unique id %s" %multiplayer.get_unique_id())
+	if player == multiplayer.get_unique_id():
+		$Camera2D.enabled = true
 
 func takeDamage() -> void:
 	HEALTH -= 30
