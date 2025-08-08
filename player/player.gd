@@ -4,6 +4,14 @@ extends CharacterBody2D
 const SPEED = 30000.0
 const ACCEL = 60
 
+@onready var input = $playerInput
+@export var player := 1:
+	set(id):
+		player = id
+		$playerInput.set_multiplayer_authority(id)
+
+		
+
 @onready var gun_common = $GunCommon
 
 @export var HEALTH = 100
@@ -17,8 +25,7 @@ func takeDamage() -> void:
 	healthBar.value = HEALTH
 
 func _physics_process(delta: float) -> void:
-	var direction = Input.get_vector("actionLeft","actionRight","actionUp","actionDown")
-
+	var direction = input.direction
 	if direction.x:
 		velocity.x = move_toward(velocity.x, direction.x * SPEED * delta, ACCEL)
 	else:
@@ -29,10 +36,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = move_toward(velocity.y, 0, ACCEL)
 	
-	if Input.is_action_pressed("actionMouseDown"):
-		gun_common.shoot()
-	if Input.is_action_pressed("actionReset"):
-		get_tree().reload_current_scene()
+	#if Input.is_action_pressed("actionMouseDown"):
+		#gun_common.shoot()
+	#if Input.is_action_pressed("actionReset"):
+		#get_tree().reload_current_scene()
 
 
 	move_and_slide()

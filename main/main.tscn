@@ -1,0 +1,101 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci6ujd12tjv0m"]
+
+[ext_resource type="Script" uid="uid://darr0kcnfu55p" path="res://main/main.gd" id="1_53q0u"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_53q0u")
+
+[node name="world" type="Node" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://q0noet6mmfw8")
+spawn_path = NodePath("../world")
+spawn_limit = 1
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="selector" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/selector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/selector/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/selector/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Select an option"
+
+[node name="server" type="Button" parent="UI/selector/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="client" type="Button" parent="UI/selector/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="client_popup" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/client_popup"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/client_popup/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/client_popup/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "IP"
+
+[node name="ip_edit" type="LineEdit" parent="UI/client_popup/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Ex: 192.168.*.*"
+
+[node name="Label2" type="Label" parent="UI/client_popup/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "PORT"
+
+[node name="port_edit" type="LineEdit" parent="UI/client_popup/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Ex: 6553"
+
+[node name="Button" type="Button" parent="UI/client_popup/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Confirm"
+
+[connection signal="pressed" from="UI/selector/HBoxContainer/VBoxContainer/server" to="." method="_on_server_pressed"]
+[connection signal="pressed" from="UI/selector/HBoxContainer/VBoxContainer/client" to="." method="_on_client_pressed"]
+[connection signal="pressed" from="UI/client_popup/HBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
