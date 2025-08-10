@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6oynkyncjr8b"]
+[gd_scene load_steps=9 format=3 uid="uid://b6oynkyncjr8b"]
 
 [ext_resource type="Script" uid="uid://c1vq7f11jfb4k" path="res://player/player.gd" id="1_dlkyw"]
 [ext_resource type="Texture2D" uid="uid://c1vphducab0w1" path="res://icon.svg" id="2_4gkfa"]
@@ -10,13 +10,21 @@
 radius = 66.0
 height = 132.0
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yw30f"]
-properties/0/path = NodePath(".:position")
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qjkh3"]
+properties/0/path = NodePath(".:player")
 properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:velocity")
+properties/0/replication_mode = 0
+properties/1/path = NodePath(".:position")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath(".:velocity")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yw30f"]
+properties/0/path = NodePath("playerInput:direction")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_dlkyw")
@@ -56,17 +64,19 @@ offset_right = 330.0
 offset_bottom = 27.0
 
 [node name="GunCommon" parent="." instance=ExtResource("3_g1dw6")]
-rotation = 584.318
+rotation = 597.224
 scale = Vector2(1.00112, -1)
 fireRate = 5.0
 turnSpeed = 0.5
-damage = 1
 bullet = ExtResource("4_yw30f")
 fireMode = 1
 bulletTargetSpeed = 0.0
 bulletAccel = 2.3
 bulletSpreadRange = 16.05
 bulletAmmount = 10
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_qjkh3")
 
 [node name="playerInput" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_yw30f")
