@@ -10,9 +10,11 @@ const ACCEL = 60
 		player = id
 		print("ID SET TO  %s" %id)
 		$playerInput.set_multiplayer_authority(id)
+		for gun in $guns.get_children():
+			gun.set_multiplayer_authority(id)
 
 
-@onready var gun_common = $GunCommon
+@onready var gun_common = $guns/GunCommon
 
 @export var HEALTH = 100
 @onready var healthBar = $CanvasLayer/Control/ProgressBar

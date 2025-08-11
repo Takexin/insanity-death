@@ -20,6 +20,9 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath(".:velocity")
 properties/2/spawn = true
 properties/2/replication_mode = 1
+properties/3/path = NodePath("guns/GunCommon:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yw30f"]
 properties/0/path = NodePath("playerInput:direction")
@@ -63,8 +66,17 @@ offset_left = 30.0
 offset_right = 330.0
 offset_bottom = 27.0
 
-[node name="GunCommon" parent="." instance=ExtResource("3_g1dw6")]
-rotation = 597.224
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_qjkh3")
+
+[node name="playerInput" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_yw30f")
+script = ExtResource("5_qjkh3")
+
+[node name="guns" type="Node2D" parent="."]
+
+[node name="GunCommon" parent="guns" instance=ExtResource("3_g1dw6")]
+rotation = -12.6493
 scale = Vector2(1.00112, -1)
 fireRate = 5.0
 turnSpeed = 0.5
@@ -74,10 +86,3 @@ bulletTargetSpeed = 0.0
 bulletAccel = 2.3
 bulletSpreadRange = 16.05
 bulletAmmount = 10
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_qjkh3")
-
-[node name="playerInput" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_yw30f")
-script = ExtResource("5_qjkh3")

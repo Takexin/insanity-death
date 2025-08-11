@@ -95,11 +95,12 @@ func _get_property_list():
 		return ret
 @export var bullet:PackedScene
 
-@onready var player = get_parent()
+@onready var player = get_parent().get_parent()
 @onready var shootAnchor = $shootAnchor
 @onready var cooldownTimer = $cooldown
 
 func _ready() -> void:
+	set_process(get_multiplayer_authority() == multiplayer.get_unique_id())
 	randomize()
 
 func _physics_process(delta: float) -> void:
