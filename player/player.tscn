@@ -1,8 +1,7 @@
-[gd_scene load_steps=28 format=3 uid="uid://b6oynkyncjr8b"]
+[gd_scene load_steps=27 format=3 uid="uid://b6oynkyncjr8b"]
 
 [ext_resource type="Script" uid="uid://c1vq7f11jfb4k" path="res://player/player.gd" id="1_dlkyw"]
-[ext_resource type="PackedScene" uid="uid://dhi31f11tkcie" path="res://gunCommon/gunCommon.tscn" id="3_g1dw6"]
-[ext_resource type="PackedScene" uid="uid://bggynjajec1mh" path="res://bulletCommon/bulletCommon.tscn" id="4_yw30f"]
+[ext_resource type="PackedScene" uid="uid://deghpghl4b0qn" path="res://guns/shotgun.tscn" id="3_qjkh3"]
 [ext_resource type="Script" uid="uid://bfh2o57xdo704" path="res://player/player_input.gd" id="5_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dghuve4fqxag" path="res://assets/sprites/player/lilly_idle-Sheet.webp" id="6_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://qgwbqis44hmi" path="res://assets/sprites/player/lilly_run-Sheet.webp" id="7_boad6"]
@@ -200,17 +199,10 @@ script = ExtResource("5_qjkh3")
 
 [node name="guns" type="Node2D" parent="."]
 
-[node name="GunCommon" parent="guns" instance=ExtResource("3_g1dw6")]
-rotation = 219.4
-scale = Vector2(1.00112, -1)
-fireRate = 5.0
-turnSpeed = 0.5
-bullet = ExtResource("4_yw30f")
-fireMode = 1
-bulletTargetSpeed = 0.0
-bulletAccel = 2.3
-bulletSpreadRange = 16.05
-bulletAmmount = 10
+[node name="GunCommon" parent="guns" instance=ExtResource("3_qjkh3")]
+z_index = 1
+rotation = -0.298607
+scale = Vector2(1, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

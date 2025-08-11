@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhi31f11tkcie"]
+[gd_scene load_steps=5 format=3 uid="uid://deghpghl4b0qn"]
 
-[ext_resource type="Script" uid="uid://ni6lb31h0bpv" path="res://gunCommon/gun_common.gd" id="1_k8nq4"]
+[ext_resource type="Script" uid="uid://ni6lb31h0bpv" path="res://gunCommon/gun_common.gd" id="1_sxy3a"]
+[ext_resource type="Texture2D" uid="uid://boobmabi0po3c" path="res://assets/sprites/guns/shotgun/shotgun_idle.webp" id="2_ps401"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8nq4"]
 
@@ -10,9 +11,9 @@ properties/0/spawn = true
 properties/0/replication_mode = 1
 
 [node name="GunCommon" type="Node2D"]
-rotation = 52.8228
+rotation = 44.2993
 scale = Vector2(1, -1)
-script = ExtResource("1_k8nq4")
+script = ExtResource("1_sxy3a")
 fireMode = 0
 bulletLifeSpan = 1.0
 bulletInitialSpeed = 240.0
@@ -35,3 +36,7 @@ position = Vector2(86, -16)
 replication_config = SubResource("SceneReplicationConfig_k8nq4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+texture = ExtResource("2_ps401")
+offset = Vector2(0, 9.06)
