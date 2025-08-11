@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhi31f11tkcie"]
+[gd_scene load_steps=4 format=3 uid="uid://dhi31f11tkcie"]
 
 [ext_resource type="Script" uid="uid://ni6lb31h0bpv" path="res://gunCommon/gun_common.gd" id="1_k8nq4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k8nq4"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_k8nq4"]
+properties/0/path = NodePath(".:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [node name="GunCommon" type="Node2D"]
-rotation = 22.6822
+rotation = 40.8105
 scale = Vector2(1, -1)
 script = ExtResource("1_k8nq4")
 fireMode = 0
@@ -25,3 +30,6 @@ shape = SubResource("RectangleShape2D_k8nq4")
 position = Vector2(86, -16)
 
 [node name="cooldown" type="Timer" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_k8nq4")

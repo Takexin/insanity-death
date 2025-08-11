@@ -1,14 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6oynkyncjr8b"]
+[gd_scene load_steps=28 format=3 uid="uid://b6oynkyncjr8b"]
 
 [ext_resource type="Script" uid="uid://c1vq7f11jfb4k" path="res://player/player.gd" id="1_dlkyw"]
-[ext_resource type="Texture2D" uid="uid://c1vphducab0w1" path="res://icon.svg" id="2_4gkfa"]
 [ext_resource type="PackedScene" uid="uid://dhi31f11tkcie" path="res://gunCommon/gunCommon.tscn" id="3_g1dw6"]
 [ext_resource type="PackedScene" uid="uid://bggynjajec1mh" path="res://bulletCommon/bulletCommon.tscn" id="4_yw30f"]
 [ext_resource type="Script" uid="uid://bfh2o57xdo704" path="res://player/player_input.gd" id="5_qjkh3"]
+[ext_resource type="Texture2D" uid="uid://dghuve4fqxag" path="res://assets/sprites/player/lilly_idle-Sheet.webp" id="6_g6k8r"]
+[ext_resource type="Texture2D" uid="uid://qgwbqis44hmi" path="res://assets/sprites/player/lilly_run-Sheet.webp" id="7_boad6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
 radius = 66.0
 height = 132.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g6k8r"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_qjkh3"]
 properties/0/path = NodePath(".:player")
@@ -20,26 +23,144 @@ properties/1/replication_mode = 1
 properties/2/path = NodePath(".:velocity")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath("guns/GunCommon:rotation")
-properties/3/spawn = true
-properties/3/replication_mode = 1
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yw30f"]
 properties/0/path = NodePath("playerInput:direction")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6k8r"]
+atlas = ExtResource("6_g6k8r")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boad6"]
+atlas = ExtResource("6_g6k8r")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgyib"]
+atlas = ExtResource("6_g6k8r")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg6s5"]
+atlas = ExtResource("6_g6k8r")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t03j"]
+atlas = ExtResource("6_g6k8r")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ieo8"]
+atlas = ExtResource("6_g6k8r")
+region = Rect2(300, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebec5"]
+atlas = ExtResource("6_g6k8r")
+region = Rect2(360, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yllr7"]
+atlas = ExtResource("6_g6k8r")
+region = Rect2(420, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb6p2"]
+atlas = ExtResource("7_boad6")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wodsf"]
+atlas = ExtResource("7_boad6")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32hag"]
+atlas = ExtResource("7_boad6")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqiix"]
+atlas = ExtResource("7_boad6")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7oew"]
+atlas = ExtResource("7_boad6")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c35mf"]
+atlas = ExtResource("7_boad6")
+region = Rect2(300, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65viv"]
+atlas = ExtResource("7_boad6")
+region = Rect2(360, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7c3f"]
+atlas = ExtResource("7_boad6")
+region = Rect2(420, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g6k8r"]
+animations = [{
+"frames": [{
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_g6k8r")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_boad6")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_rgyib")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_hg6s5")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_8t03j")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_2ieo8")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_ebec5")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_yllr7")
+}],
+"loop": true,
+"name": &"lilly_idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_kb6p2")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_wodsf")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_32hag")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_tqiix")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_e7oew")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_c35mf")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_65viv")
+}, {
+"duration": 0.08,
+"texture": SubResource("AtlasTexture_x7c3f")
+}],
+"loop": true,
+"name": &"lilly_run",
+"speed": 1.0
+}]
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_dlkyw")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_4gkfa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_rkbax")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.2, 0.2)
 process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
@@ -66,6 +187,10 @@ offset_left = 30.0
 offset_right = 330.0
 offset_bottom = 27.0
 
+[node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../MultiplayerSynchronizer")
+replication_config = SubResource("SceneReplicationConfig_g6k8r")
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_qjkh3")
 
@@ -76,7 +201,7 @@ script = ExtResource("5_qjkh3")
 [node name="guns" type="Node2D" parent="."]
 
 [node name="GunCommon" parent="guns" instance=ExtResource("3_g1dw6")]
-rotation = -12.6493
+rotation = 219.4
 scale = Vector2(1.00112, -1)
 fireRate = 5.0
 turnSpeed = 0.5
@@ -86,3 +211,9 @@ bulletTargetSpeed = 0.0
 bulletAccel = 2.3
 bulletSpreadRange = 16.05
 bulletAmmount = 10
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_g6k8r")
+animation = &"lilly_run"
