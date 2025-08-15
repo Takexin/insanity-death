@@ -200,7 +200,7 @@ position = Vector2(0, 346)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_g6k8r")
 centered = false
-offset = Vector2(0, 222.5)
+offset = Vector2(0, 295)
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
 layout_mode = 2
@@ -224,7 +224,8 @@ script = ExtResource("5_qjkh3")
 
 [node name="GunCommon" parent="guns" instance=ExtResource("3_qjkh3")]
 z_index = 1
-rotation = 1.71162
+rotation = 1.45274
+scale = Vector2(1, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
