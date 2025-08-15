@@ -1,6 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://b6oynkyncjr8b"]
+[gd_scene load_steps=28 format=3 uid="uid://b6oynkyncjr8b"]
 
 [ext_resource type="Script" uid="uid://c1vq7f11jfb4k" path="res://player/player.gd" id="1_dlkyw"]
+[ext_resource type="Texture2D" uid="uid://ddlahrk8ijb28" path="res://assets/sprites/icon/lilly/lilly_final_transparent.png" id="2_g6k8r"]
 [ext_resource type="PackedScene" uid="uid://deghpghl4b0qn" path="res://guns/shotgun.tscn" id="3_qjkh3"]
 [ext_resource type="Script" uid="uid://bfh2o57xdo704" path="res://player/player_input.gd" id="5_qjkh3"]
 [ext_resource type="Texture2D" uid="uid://dghuve4fqxag" path="res://assets/sprites/player/lilly_idle-Sheet.webp" id="6_g6k8r"]
@@ -174,7 +175,6 @@ drag_bottom_margin = 0.1
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -182,11 +182,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control/HBoxContainer"]
+position = Vector2(0, 346)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_g6k8r")
+centered = false
+offset = Vector2(0, 222.5)
+
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control"]
-layout_mode = 0
-offset_left = 30.0
-offset_right = 330.0
-offset_bottom = 27.0
+layout_mode = 2
+offset_left = 256.0
+offset_top = 616.0
+offset_right = 556.0
+offset_bottom = 643.0
 
 [node name="MultiplayerSynchronizer2" type="MultiplayerSynchronizer" parent="."]
 root_path = NodePath("../MultiplayerSynchronizer")
@@ -203,8 +224,7 @@ script = ExtResource("5_qjkh3")
 
 [node name="GunCommon" parent="guns" instance=ExtResource("3_qjkh3")]
 z_index = 1
-rotation = -0.105482
-scale = Vector2(1, 1)
+rotation = 1.71162
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
