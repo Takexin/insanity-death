@@ -11,9 +11,11 @@ properties/0/spawn = true
 properties/0/replication_mode = 1
 
 [node name="GunCommon" type="Node2D"]
-rotation = 44.2993
+position = Vector2(0, 43.725)
+rotation = -4.54516
 scale = Vector2(1, -1)
 script = ExtResource("1_sxy3a")
+turnSpeed = 0.25
 fireMode = 0
 bulletLifeSpan = 1.0
 bulletInitialSpeed = 240.0
@@ -37,6 +39,6 @@ replication_config = SubResource("SceneReplicationConfig_k8nq4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(4, 4)
+scale = Vector2(6, 6)
 texture = ExtResource("2_ps401")
-offset = Vector2(0, 9.06)
+offset = Vector2(18.04, -4.085)

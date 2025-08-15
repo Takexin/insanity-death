@@ -107,11 +107,18 @@ func _physics_process(delta: float) -> void:
 	var mouse = get_global_mouse_position()
 	
 	var turnRate = turnSpeed
-	if rotation > PI/2 or rotation < -PI/2:
+	if rotation >= 2*PI:
+		rotation -= 2*PI
+	elif rotation <= -2*PI:
+		rotation += 2*PI
+	if rotation > (PI/2):
 		scale.y = -1
+		rotation -= 2*PI
+	elif rotation < -PI/2:
+		rotation += 2*PI
 	else:
 		scale.y = 1
-	rotation = lerpf(rotation, get_angle_to(mouse) + rotation, turnRate * delta * 25)
+	rotation = (lerpf(rotation, get_angle_to(mouse) + rotation, turnRate * delta * 25))
 	
 
 func on_hit_enemy(damage : float):
