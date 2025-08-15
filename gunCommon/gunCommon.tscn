@@ -10,7 +10,7 @@ properties/0/spawn = true
 properties/0/replication_mode = 1
 
 [node name="GunCommon" type="Node2D"]
-rotation = 54.5595
+rotation = -4.0282
 scale = Vector2(1, -1)
 script = ExtResource("1_k8nq4")
 fireMode = 0
