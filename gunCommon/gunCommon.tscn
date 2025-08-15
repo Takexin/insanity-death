@@ -10,7 +10,7 @@ properties/0/spawn = true
 properties/0/replication_mode = 1
 
 [node name="GunCommon" type="Node2D"]
-rotation = -4.0282
+rotation = 3.36106
 scale = Vector2(1, -1)
 script = ExtResource("1_k8nq4")
 fireMode = 0
@@ -35,3 +35,8 @@ position = Vector2(86, -16)
 replication_config = SubResource("SceneReplicationConfig_k8nq4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="bullets" type="Node2D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("../bullets")

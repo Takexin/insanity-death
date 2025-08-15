@@ -2,6 +2,7 @@
 class_name gun_common
 extends Node2D
 
+@onready var bullets = $bullets
 @export_group("Gun Properties")
 
 @export_range(0.1,5,0.05) var fireRate = 1.0
@@ -123,7 +124,7 @@ func _physics_process(delta: float) -> void:
 
 func on_hit_enemy(damage : float):
 	pass
-
+@rpc("any_peer", "call_local", "unreliable")
 func shoot():
 	if canShoot:
 		canShoot = false
@@ -137,6 +138,7 @@ func shoot():
 			bulletInstance.accel = bulletAccel
 			bulletInstance.cooldown = bulletLifeSpan
 			bulletInstance.damage = damage
-			add_child(bulletInstance)
+			
+			bullets.add_child(bulletInstance,true)
 		await get_tree().create_timer(1/fireRate).timeout
 		canShoot = true

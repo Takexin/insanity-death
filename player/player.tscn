@@ -154,6 +154,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 2
 script = ExtResource("1_dlkyw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -201,8 +202,7 @@ script = ExtResource("5_qjkh3")
 
 [node name="GunCommon" parent="guns" instance=ExtResource("3_qjkh3")]
 z_index = 1
-rotation = -0.298607
-scale = Vector2(1, 1)
+rotation = -4.47112
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

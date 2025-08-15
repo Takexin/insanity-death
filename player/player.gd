@@ -49,8 +49,8 @@ func _physics_process(delta: float) -> void:
 	if direction == Vector2(0,0):
 		animation_player.play("lilly_idle")
 
-	#if Input.is_action_pressed("actionMouseDown"):
-		#gun_common.shoot()
+	if Input.is_action_pressed("actionMouseDown"):
+		gun_common.shoot()
 	#if Input.is_action_pressed("actionReset"):
 		#get_tree().reload_current_scene()
 
