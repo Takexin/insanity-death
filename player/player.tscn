@@ -202,7 +202,7 @@ script = ExtResource("5_qjkh3")
 
 [node name="GunCommon" parent="guns" instance=ExtResource("3_qjkh3")]
 z_index = 1
-rotation = -4.47112
+rotation = -2.9749
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

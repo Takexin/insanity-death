@@ -34,3 +34,7 @@ func _exit_tree() -> void:
 		return
 	multiplayer.peer_connected.disconnect(on_player_connected)
 	multiplayer.peer_disconnected.disconnect(on_player_connected)
+	
+@rpc("authority", "call_local", "reliable")
+func spawn_enemy():
+	pass
